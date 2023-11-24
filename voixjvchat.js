@@ -60,6 +60,7 @@
                 // Vérifier si l'élément <p> est contenu dans un <blockquote>
                 if (!p.closest('blockquote')) {
                     var textContent = p.textContent;
+                    textContent = textContent.replace(/http[s]?:\/\/[^\s]+/g, ''); //on enleve les liens http
                     console.log("on va lire : "+textContent);
 
                     if (voixChargees){
