@@ -36,7 +36,19 @@
 
         utterance.voice = voices.find(voice => voice.name === "Google français");
         utterance.rate = 1.1;//vitesse de parole
+        console.log("on speak");
         speechSynthesis.speak(utterance);
+        let r = setInterval(() => {
+            //console.log(speechSynthesis.speaking);
+            if (!speechSynthesis.speaking) {
+                clearInterval(r);
+                console.log("clearinterval");
+            } else {
+                console.log("speech pause and resume");
+                speechSynthesis.pause();
+                speechSynthesis.resume();
+            }
+        }, 14000);
     }
 
     observeDOM();
@@ -48,6 +60,7 @@
                 // Vérifier si l'élément <p> est contenu dans un <blockquote>
                 if (!p.closest('blockquote')) {
                     var textContent = p.textContent;
+                    console.log("on va lire : "+textContent);
 
                     if (voixChargees){
                         startVoice(textContent);
